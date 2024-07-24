@@ -41,15 +41,36 @@ export class AuthService {
     }
   }
 
-  async getCurrentUser() {
+  /*   async getCurrentUser() {
     try {
-        return await this.account.get();
+      const user = await this.account.get();
+      if (user) {
+        return user;
+      } else {
+        throw new Error("User not authenticated");
+      }
     } catch (error) {
-        console.log("Appwrite serive :: getCurrentUser :: error", error);
+      console.log("Appwrite serive :: getCurrentUser :: error", error);
     }
 
     return null;
-}
+  }
+ */
+  async getCurrentUser() {
+    try {
+      const user = await this.account.get();
+      return user;
+    } catch (error) {
+      if (error.code === 401) {
+        console.log(
+          "Appwrite service :: getCurrentUser :: User not authenticated"
+        );
+      } else {
+        console.log("Appwrite service :: getCurrentUser :: error", error);
+      }
+      return null;
+    }
+  }
 
   async signOut() {
     try {

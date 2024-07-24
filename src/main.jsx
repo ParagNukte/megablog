@@ -1,9 +1,8 @@
-
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 import store from "./store/store.js";
-import  {Provider}  from "react-redux";
+import { Provider } from "react-redux";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import {
@@ -15,65 +14,73 @@ import {
   Post,
   SignupForm,
 } from "./components/index.js";
+import NotFound from "./pages/NotFound.jsx";
 
-console.log("Store detailes", store)
+console.log("Store detailes", store);
 
-const router = createBrowserRouter([
-  {
-    path: "/megablog/",
-    element: <App />,
-    children: [
-      {
-        path: "/megablog/home",
-        element: <Home />,
-      },
-      {
-        path: "/megablog/login",
-        element: (
-          <AuthLayout authentication={false}>
-            <Login />
-          </AuthLayout>
-        ),
-      },
-      {
-        path: "/megablog/signup",
-        element: (
-          <AuthLayout authentication={false}>
-            <SignupForm />
-          </AuthLayout>
-        ),
-      },
-      {
-        path: "/megablog/all-posts",
-        element: (
-          <AuthLayout authentication={true}>
-            <AllPosts />
-          </AuthLayout>
-        ),
-      },
-      {
-        path: "/megablog/add-post",
-        element: (
-          <AuthLayout authentication={true}>
-            <AddPost />
-          </AuthLayout>
-        ),
-      },
-      {
-        path: "/megablog/edit-post/:slug",
-        element: (
-          <AuthLayout authentication={true}>
-            <EditPost />
-          </AuthLayout>
-        ),
-      },
-      {
-        path: "/megablog/post/:slug",
-        element: <Post />,
-      },
-    ],
-  },
-]);
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <App />,
+      children: [
+        {
+          path: "home",
+          element: <Home />,
+        },
+        {
+          path: "login",
+          element: (
+            <AuthLayout authentication={false}>
+              <Login />
+            </AuthLayout>
+          ),
+        },
+        {
+          path: "signup",
+          element: (
+            <AuthLayout authentication={false}>
+              <SignupForm />
+            </AuthLayout>
+          ),
+        },
+        {
+          path: "all-posts",
+          element: (
+            <AuthLayout authentication={true}>
+              <AllPosts />
+            </AuthLayout>
+          ),
+        },
+        {
+          path: "add-post",
+          element: (
+            <AuthLayout authentication={true}>
+              <AddPost />
+            </AuthLayout>
+          ),
+        },
+        {
+          path: "edit-post/:slug",
+          element: (
+            <AuthLayout authentication={true}>
+              <EditPost />
+            </AuthLayout>
+          ),
+        },
+        {
+          path: "post/:slug",
+          element: <Post />,
+        },
+        {
+          path: "*",
+          element: <NotFound />, // Add a NotFound component to handle 404 errors
+        },
+      ],
+    },
+  ],
+  { basename: "/megablog" }
+);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <>
@@ -82,3 +89,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     </Provider>
   </>
 );
+
+console.log("Router configuration", router);
