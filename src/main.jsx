@@ -20,15 +20,15 @@ console.log("Store detailes", store)
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/megablog/",
     element: <App />,
     children: [
       {
-        path: "/",
+        path: "/megablog/home",
         element: <Home />,
       },
       {
-        path: "/login",
+        path: "/megablog/login",
         element: (
           <AuthLayout authentication={false}>
             <Login />
@@ -36,7 +36,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/signup",
+        path: "/megablog/signup",
         element: (
           <AuthLayout authentication={false}>
             <SignupForm />
@@ -44,7 +44,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/all-posts",
+        path: "/megablog/all-posts",
         element: (
           <AuthLayout authentication={true}>
             <AllPosts />
@@ -52,7 +52,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/add-post",
+        path: "/megablog/add-post",
         element: (
           <AuthLayout authentication={true}>
             <AddPost />
@@ -60,7 +60,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/edit-post/:slug",
+        path: "/megablog/edit-post/:slug",
         element: (
           <AuthLayout authentication={true}>
             <EditPost />
@@ -68,7 +68,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/post/:slug",
+        path: "/megablog/post/:slug",
         element: <Post />,
       },
     ],
